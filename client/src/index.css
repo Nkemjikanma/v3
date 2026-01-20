@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+	--font-outfitLight: "Outfit-Light";
+	--font-outfitRegular: "Outfit-Regular";
+	--font-outfitSemiBold: "Outfit-SemiBold";
+	--font-outfitBold: "Outfit-Bold";
+}
+
+@layer base {
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	@font-face {
+		font-family: "Outfit-Light";
+		src: local("Outfit-Light"),
+			url("./assets/fonts/Outfit/static/Outfit-Light.ttf") format("truetype")
+	}
+
+	@font-face {
+		font-family: "Outfit-Regular";
+		src: local("Outfit-Regular"),
+			url("./assets/fonts/Outfit/static/Outfit-Regular.ttf") format("truetype")
+	}
+
+	@font-face {
+		font-family: "Outfit-SemiBold";
+		src: local("Outfit-SemiBold"),
+			url("./assets/fonts/Outfit/static/Outfit-SemiBold.ttf") format("truetype")
+	}
+
+	@font-face {
+		font-family: "Outfit-Bold";
+		src: local("Outfit-Bold"),
+			url("./assets/fonts/Outfit/static/Outfit-Bold.ttf") format("truetype")
+	}
+}
