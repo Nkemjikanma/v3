@@ -14,12 +14,13 @@ export const experiences = [
   {
     discStyle: "Present",
     name: "Freelance",
-    duration: "Oct. 23 - ",
+    duration: "Oct. 2024 - Present ",
   },
   {
     discStyle: "Past",
     name: "Navro",
     duration: "Nov. 2022 - Sept. 2024",
+    url: "https://navro.com/",
   },
   {
     discStyle: "Past",
@@ -137,11 +138,11 @@ export const socials = [
     logo: "/images/logos/linkedin.svg",
     profile: "https://www.linkedin.com/in/nkemjika-ohanyere/",
   },
-  // {
-  //   name: "Farcaster",
-  //   logo: "/images/logos/farcaster.svg",
-  //   profile: "https://warpcast.com/nkemjika",
-  // },
+  {
+    name: "Farcaster",
+    logo: "/images/logos/farcaster.svg",
+    profile: "https://warpcast.com/nkemjika",
+  },
   {
     name: "ENS",
     logo: "/images/logos/ens1.svg",

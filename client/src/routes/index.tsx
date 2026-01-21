@@ -19,11 +19,11 @@ function Landing() {
         <h1 className="text-2xl font-outfitSemiBold">Nkemjika Ohanyere</h1>
         <p className="text-black mt-1">Fullstack Software Engineer</p>
         <p className="text-black mt-4 leading-relaxed">
-          I know, you can call me <span className="font-outfitBold">Kemji</span>
-          . I am a software engineer with a passion for building technologies
-          that broaden access and improve financial services. I am currently
-          working as a freelance sofware engineer building with Rust, Solidity &
-          TypeScript.
+          If you're wondering how to say my name, just call me
+          <span className="font-outfitBold"> Kemji</span>. I am a software
+          engineer with a passion for building technologies that broaden access
+          and improve financial services. I am currently working as a freelance
+          sofware engineer building with Rust, Solidity & TypeScript.
         </p>
         <div className="flex gap-6 mt-6">
           <p>You can find me on: </p>
@@ -89,7 +89,9 @@ function Landing() {
                 ) : (
                   <span className="inline-flex rounded-full h-2 w-2 bg-gray-300"></span>
                 )}
-                {exp.name}
+                <a href={exp.url} target="_blank" rel="noreferre">
+                  {exp.name}
+                </a>
               </span>
               <span className="text-black text-sm mt-1 sm:mt-0 pl-4 sm:pl-0">
                 {exp.duration}
