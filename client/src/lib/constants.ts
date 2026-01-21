@@ -123,6 +123,11 @@ export const toolings = [
 
 export const socials = [
   {
+    name: "Mail",
+    logo: "/images/logos/email.svg",
+    profile: "mailto:contact@nkem.dev",
+  },
+  {
     name: "Github",
     logo: "/images/logos/github.svg",
     profile: "https://github.com/Nkemjikanma",
@@ -132,20 +137,21 @@ export const socials = [
     logo: "/images/logos/linkedin.svg",
     profile: "https://www.linkedin.com/in/nkemjika-ohanyere/",
   },
-  {
-    name: "Mail",
-    logo: "/images/logos/email.svg",
-    profile: "mailto:contact@nkem.dev",
-  },
-  {
-    name: "Farcaster",
-    logo: "/images/logos/farcaster.svg",
-    profile: "https://warpcast.com/nkemjika",
-  },
+  // {
+  //   name: "Farcaster",
+  //   logo: "/images/logos/farcaster.svg",
+  //   profile: "https://warpcast.com/nkemjika",
+  // },
   {
     name: "ENS",
     logo: "/images/logos/ens1.svg",
     profile: "https://app.ens.domains/nkemjika.eth",
+  },
+  {
+    name: "Towns",
+    logo: "/images/logos/towns.svg",
+    profile:
+      "https://app.towns.com/t/0x16c26e46624ebfd0929c0b0a2d0f51ff1514eb31/",
   },
 ];
 
