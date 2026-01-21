@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} - {{ config.title }}{% endblock title %}
+
+{% block description %}{{ page.description | default(value="") }}{% endblock description %}
+
+{% block content %}
+<div class="progress-bar" id="progress-bar"></div>
+
+<article class="post">
+  <a href="{{ get_url(path='/') }}" class="back-link">← Back to posts</a>
+
+  <header>
+    <h1>{{ page.title }}</h1>
+    <p class="post-meta">
+      {{ page.date | date(format="%B %d, %Y") }}
+      {% if page.reading_time %}
+       · {{ page.reading_time }} min read
+      {% endif %}
+    </p>
+  </header>
+
+  <div class="post-content">
+    {{ page.content | safe }}
+  </div>
+</article>
+
+<script>
+  const progressBar = document.getElementById('progress-bar');
+
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = progress + '%';
+  }
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+</script>
+{% endblock content %}

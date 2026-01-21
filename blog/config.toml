@@ -1,0 +1,45 @@
+# The URL the site will be built for
+base_url = "https://nkem.dev/blog"
+
+# Title of the website
+title = "Little notes"
+
+# Name of the keywords that should be assigned to the articles
+taxonomies = [{ name = "tags" }]
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
+
+[markdown]
+# Allow syntax highlighting
+# highlight_code = true
+
+# Theme dependent settings
+[extra]
+
+# Activate the Dark mode
+theme = "auto"
+
+[markdown.highlighting]
+theme = "catppuccin-mocha"
+
+# Social links
+socials = [
+ { name = "github", url = "https://github.com/Nkemjikanma", icon = "github" },
+ { name = "rss", url = "/rss.xml", icon = "rss" },
+]
+
+# Navigation bar
+menu = [
+ { name = "/posts", url = "/posts", weight = 1 },
+ { name = "/pages", url = "/pages", weight = 1 },
+ { name = "/tags", url = "/tags", weight = 3 },
+]
+
+# [extra]
+# Put all your custom variables here
+# Text to display in the footer of the page
+copyright = "Copyright authors year"

@@ -1,0 +1,419 @@
+// Font Definitions
+@font-face {
+    font-family: "Outfit-Light";
+    src: url("Outfit-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Outfit-Regular";
+    src: url("Outfit-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Outfit-SemiBold";
+    src: url("Outfit-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Outfit-Bold";
+    src: url("Outfit-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-display: swap;
+}
+
+// CSS Variables
+:root {
+    --font-light: "Outfit-Light", sans-serif;
+    --font-regular: "Outfit-Regular", sans-serif;
+    --font-semibold: "Outfit-SemiBold", sans-serif;
+    --font-bold: "Outfit-Bold", sans-serif;
+
+    --color-black: #000000;
+    --color-white: #ffffff;
+    --color-gray-100: #f3f4f6;
+    --color-gray-300: #d1d5db;
+    --color-gray-600: #4b5563;
+    --color-gray-900: #111827;
+    --color-green-400: #4ade80;
+    --color-green-500: #22c55e;
+
+    --max-width: 42rem; // ~672px (max-w-2xl)
+    --padding-x: 1.5rem; // 24px
+    --padding-y: 3rem; // 48px
+    --gap-large: 3rem; // 48px
+    --gap-medium: 1.5rem; // 24px
+    --gap-small: 1rem; // 16px
+}
+
+// Reset
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+// Base Styles
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-regular);
+    background-color: var(--color-white);
+    color: var(--color-black);
+    line-height: 1.6;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22em;
+}
+
+// Layout
+.wrapper {
+    position: relative;
+    min-height: 100dvh;
+    width: 100%;
+    max-width: var(--max-width);
+    padding: var(--padding-y) var(--padding-x);
+    display: flex;
+    flex-direction: column;
+}
+
+// Header
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-semibold);
+    font-size: 1.125rem;
+    color: var(--color-black);
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: var(--color-gray-600);
+    }
+}
+
+.nav {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.875rem;
+
+    a {
+        color: var(--color-black);
+        text-decoration: none;
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: var(--color-gray-900);
+        }
+
+        &.active {
+            color: var(--color-gray-900);
+        }
+    }
+}
+
+// Main Content
+.main {
+    flex: 1;
+    margin-top: var(--gap-large);
+}
+
+// Footer
+.footer {
+    margin-top: var(--gap-large);
+    padding-top: var(--gap-medium);
+    border-top: 1px solid var(--color-gray-100);
+    font-size: 0.875rem;
+    color: var(--color-black);
+}
+
+// Typography
+h1 {
+    font-family: var(--font-semibold);
+    font-size: 1.5rem;
+    color: var(--color-black);
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-family: var(--font-semibold);
+    font-size: 0.875rem;
+    color: var(--color-black);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--gap-small);
+}
+
+p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+a {
+    color: var(--color-black);
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: var(--color-gray-600);
+    }
+}
+
+// Blog Index / Home
+.intro {
+    margin-bottom: var(--gap-large);
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .subtitle {
+        color: var(--color-black);
+        margin-top: 0.25rem;
+    }
+
+    .description {
+        margin-top: 1rem;
+        line-height: 1.7;
+    }
+}
+
+// Post List
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-small);
+}
+
+.post-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    @media (min-width: 640px) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
+    }
+
+    a {
+        font-family: var(--font-regular);
+
+        &:hover {
+            color: var(--color-gray-600);
+        }
+    }
+
+    .title-desc {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 0.5rem;
+
+        @media (min-width: 640px) {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.25rem;
+        }
+
+        span {
+            font-size: 0.875rem;
+            color: var(--color-gray-600);
+            font-style: italic;
+            flex-shrink: 0;
+        }
+    }
+
+    .post-date {
+        font-size: 0.875rem;
+        color: var(--color-black);
+        flex-shrink: 0;
+    }
+}
+
+// Blog Post Content
+.post {
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .post-meta {
+        font-size: 0.875rem;
+        color: var(--color-gray-600);
+        margin-bottom: var(--gap-medium);
+    }
+
+    .post-content {
+        h2 {
+            font-size: 1.25rem;
+            text-transform: none;
+            letter-spacing: normal;
+            margin-top: var(--gap-medium);
+            margin-bottom: var(--gap-small);
+        }
+
+        h3 {
+            font-family: var(--font-semibold);
+            font-size: 1.125rem;
+            margin-top: var(--gap-medium);
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul,
+        ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+
+            li {
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        code {
+            font-family:
+                ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+                monospace;
+            font-size: 0.875em;
+            background-color: var(--color-gray-100);
+            padding: 0.125rem 0.375rem;
+            border-radius: 0.25rem;
+        }
+
+        pre {
+            background-color: #1e1e2e; // Catppuccin Mocha background
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+
+            code {
+                background: none;
+                padding: 0;
+                font-size: 0.875rem;
+                color: #cdd6f4; // Catppuccin Mocha text
+            }
+        }
+
+        blockquote {
+            border-left: 3px solid var(--color-gray-300);
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: var(--color-gray-600);
+            font-style: italic;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        a {
+            text-decoration: underline;
+            text-underline-offset: 2px;
+
+            &:hover {
+                color: var(--color-gray-600);
+            }
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--color-gray-100);
+            margin: var(--gap-medium) 0;
+        }
+    }
+}
+
+// Back Link
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    margin-bottom: var(--gap-medium);
+
+    &:hover {
+        color: var(--color-gray-600);
+    }
+}
+
+// Section Title
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: var(--gap-small);
+
+    h2 {
+        margin-bottom: 0;
+    }
+
+    .view-all {
+        font-size: 0.875rem;
+
+        &:hover {
+            color: var(--color-gray-600);
+        }
+    }
+}
+
+// Reading Progress Bar
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--color-green-500);
+    z-index: 100;
+    transition: width 0.1s ease-out;
+
+    &::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 100px;
+        background: linear-gradient(
+            to right,
+            var(--color-green-500),
+            var(--color-green-400)
+        );
+        opacity: 0.6;
+        filter: blur(3px);
+    }
+}
+
+// Responsive adjustments
+@media (min-width: 640px) {
+    .nav {
+        gap: 1.5rem;
+    }
+}

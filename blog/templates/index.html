@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block title %}{{ config.title }} - nkem{% endblock
+title %} {% block content %}
+<div class="intro">
+    <h1>Little notes</h1>
+    <p class="description">
+        Journey through photography, music, software engineering, blockchain,
+        and building products.
+    </p>
+</div>
+
+<section>
+    <div class="section-title">
+        <h2>Posts</h2>
+    </div>
+
+    {% set blog_section = get_section(path="blog/_index.md") %}
+    <ul class="posts">
+        {% for page in blog_section.pages %}
+        <li class="post-item">
+            <div class="title-desc">
+                <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
+                <span>{{page.description}}</span>
+            </div>
+
+            <span class="post-date"
+                >{{ page.date | date(format="%b %d, %Y") }}</span
+            >
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock content %}
