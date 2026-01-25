@@ -30,8 +30,6 @@ function Header() {
         </Link>
         <a
           href="https://nkem.dev/blog"
-          target="_blank"
-          rel="noreferrer"
           className="text-black hover:text-gray-900 transition-colors"
         >
           blog

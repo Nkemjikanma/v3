@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My first post - Little notes</title>
+    <meta name="description" content="A short description" />
+    <meta name="author" content="Nkemjika Ohanyere" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https:&#x2F;&#x2F;nkem.dev&#x2F;blog&#x2F;blog&#x2F;first&#x2F;" />
+
+    <!-- RSS Feed Autodiscovery -->
+    <link rel="alternate" type="application/rss+xml" title="Little notes" href="https://nkem.dev/blog/rss.xml" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https:&#x2F;&#x2F;nkem.dev&#x2F;blog&#x2F;blog&#x2F;first&#x2F;" />
+    <meta property="og:title" content="My first post" />
+    <meta property="og:description" content="A short description" />
+    <meta property="og:site_name" content="Little notes" />
+    <meta property="og:locale" content="en_US" />
+    
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="My first post" />
+    <meta name="twitter:description" content="A short description" />
+    
+
+    <!-- JSON-LD Structured Data -->
+    
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "My first post",
+  "description": "A short description",
+  "url": "https:&#x2F;&#x2F;nkem.dev&#x2F;blog&#x2F;blog&#x2F;first&#x2F;",
+  
+  "datePublished": "2019-11-27",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Nkemjika Ohanyere"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Nkemjika Ohanyere"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:&#x2F;&#x2F;nkem.dev&#x2F;blog&#x2F;blog&#x2F;first&#x2F;"
+  }
+}
+</script>
+
+
+    <link rel="stylesheet" href="https://nkem.dev/blog/style.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <a href="https://nkem.dev" class="logo">nkem</a>
+        <nav class="nav">
+          <a href="https://nkem.dev/about">about</a>
+          <a href="https://nkem.dev/blog" class="active">blog</a>
+          <a href="https://esemese.xyz" target="_blank" rel="noreferrer">photos</a>
+        </nav>
+      </header>
+
+      <main class="main">
+        
+<div class="progress-bar" id="progress-bar"></div>
+
+<article class="post">
+  <a href="https://nkem.dev/blog" class="back-link">← Back to posts</a>
+
+  <header>
+    <h1>My first post</h1>
+    <p class="post-meta">
+      November 27, 2019
+      
+       · 1 min read
+      
+    </p>
+  </header>
+
+  <div class="post-content">
+    <p>This is my first blog post.</p>
+
+  </div>
+</article>
+
+<script>
+  const progressBar = document.getElementById('progress-bar');
+
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = progress + '%';
+  }
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+</script>
+
+      </main>
+
+      <footer class="footer">
+        <p>🧌 &copy; 2026 Nkemjika</p>
+      </footer>
+    </div>
+  </body>
+</html>

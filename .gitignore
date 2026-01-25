@@ -2,8 +2,10 @@
 node_modules
 
 # Build output
+dist
 dist-ssr
 build
+public
 
 # Environment variables
 .env

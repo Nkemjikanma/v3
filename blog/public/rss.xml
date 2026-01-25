@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+      <title>Little notes</title>
+      <link>https://nkem.dev/blog</link>
+      <description>Personal blog by Nkemjika Ohanyere</description>
+      <generator>Zola</generator>
+      <language>en</language>
+      <atom:link href="https://nkem.dev/blog/rss.xml" rel="self" type="application/rss+xml"/>
+      <lastBuildDate>Wed, 27 Nov 2019 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>My first post</title>
+          <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
+          <author>Nkemjika Ohanyere</author>
+          <link>https://nkem.dev/blog/blog/first/</link>
+          <guid>https://nkem.dev/blog/blog/first/</guid>
+          <description xml:base="https://nkem.dev/blog/blog/first/">&lt;p&gt;This is my first blog post.&lt;&#x2F;p&gt;
+</description>
+      </item>
+    </channel>
+</rss>

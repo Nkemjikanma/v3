@@ -1,5 +1,5 @@
 # The URL the site will be built for
-base_url = "https://scribbledlittlenotes.netlify.app/"
+base_url = "https://nkem.dev/blog"
 
 # Title of the website
 title = "Little notes"
@@ -37,7 +37,7 @@ theme = "catppuccin-mocha"
 # Social links
 socials = [
  { name = "github", url = "https://github.com/Nkemjikanma", icon = "github" },
- { name = "rss", url = "/blog/rss.xml", icon = "rss" },
+ { name = "rss", url = "/rss.xml", icon = "rss" },
 ]
 
 # Navigation bar

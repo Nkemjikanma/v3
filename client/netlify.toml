@@ -3,3 +3,9 @@
   to = "https://scribbledlittlenotes.netlify.app/:splat"
   status = 200
   force = true
+
+# SPA fallback - must come after other redirects
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
