@@ -3,6 +3,10 @@ base_url = "https://nkem.dev/blog"
 
 # Title of the website
 title = "Little notes"
+description = "Personal blog by Nkemjika Ohanyere"
+
+# Author information
+author = "Nkemjika Ohanyere"
 
 # Name of the keywords that should be assigned to the articles
 taxonomies = [{ name = "tags" }]
@@ -12,6 +16,10 @@ compile_sass = true
 
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = false
+
+# Generate RSS feed
+generate_feeds = true
+feed_filenames = ["rss.xml"]
 
 [markdown]
 # Allow syntax highlighting

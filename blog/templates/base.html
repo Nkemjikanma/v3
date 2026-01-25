@@ -4,7 +4,46 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% block title %}{{ config.title }}{% endblock title %}</title>
-    <meta name="description" content="{% block description %}Personal blog by Nkemjika Ohanyere{% endblock description %}" />
+    <meta name="description" content="{% block description %}{{ config.description | default(value="Personal blog by Nkemjika Ohanyere") }}{% endblock description %}" />
+    <meta name="author" content="{{ config.author | default(value="Nkemjika Ohanyere") }}" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{% block canonical %}{{ config.base_url }}{% endblock canonical %}" />
+
+    <!-- RSS Feed Autodiscovery -->
+    <link rel="alternate" type="application/rss+xml" title="{{ config.title }}" href="{{ get_url(path='rss.xml') }}" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="{% block og_type %}website{% endblock og_type %}" />
+    <meta property="og:url" content="{% block og_url %}{{ config.base_url }}{% endblock og_url %}" />
+    <meta property="og:title" content="{% block og_title %}{{ config.title }}{% endblock og_title %}" />
+    <meta property="og:description" content="{% block og_description %}{{ config.description | default(value="Personal blog by Nkemjika Ohanyere") }}{% endblock og_description %}" />
+    <meta property="og:site_name" content="{{ config.title }}" />
+    <meta property="og:locale" content="en_US" />
+    {% block og_image %}{% endblock og_image %}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{% block twitter_title %}{{ config.title }}{% endblock twitter_title %}" />
+    <meta name="twitter:description" content="{% block twitter_description %}{{ config.description | default(value="Personal blog by Nkemjika Ohanyere") }}{% endblock twitter_description %}" />
+    {% block twitter_image %}{% endblock twitter_image %}
+
+    <!-- JSON-LD Structured Data -->
+    {% block structured_data %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "{{ config.title }}",
+      "url": "{{ config.base_url }}",
+      "author": {
+        "@type": "Person",
+        "name": "{{ config.author | default(value="Nkemjika Ohanyere") }}"
+      }
+    }
+    </script>
+    {% endblock structured_data %}
+
     <link rel="stylesheet" href="{{ get_url(path='style.css') }}" />
   </head>
 
