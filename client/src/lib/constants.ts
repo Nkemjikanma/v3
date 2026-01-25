@@ -158,7 +158,7 @@ export const socials = [
 
 export const ens = {
   logo: "/images/logos/ens.svg",
-  domains: ["nkemjika.eth", "nkem.eth", "keyof.eth"],
+  domains: ["nkemjika.eth", "keyof.eth"],
 };
 
 export const BOOKS_API = import.meta.env.VITE_BOOKS_API_KEY;
