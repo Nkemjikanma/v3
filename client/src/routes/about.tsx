@@ -25,8 +25,10 @@ function About() {
       {/* Personal */}
       <section>
         <p className="text-black leading-relaxed">
-          Father and husband. Guitarist and songwriter. I enjoy reading fiction,
-          exploring new music, and building things that solve real problems.
+          Father and husband. Guitarist and songwriter.
+          <br />I am currently working as a Freelance Software engineer. I also
+          enjoy reading - mostly fiction, creating music, and building things
+          that hopefully solve real problems.
         </p>
       </section>
 

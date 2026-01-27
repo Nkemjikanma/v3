@@ -47,3 +47,5 @@ coverage
 .turbo
 
 target*/*
+
+ipfs-ens-deploy-guide.md
