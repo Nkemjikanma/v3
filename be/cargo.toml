@@ -2,7 +2,7 @@
 name = "be"
 version = "0.1.0"
 authors = ["Nkemjika Ohanyere <contact@nkem.dev>"]
-edition = "2024"
+edition = "2021"
 
 [lib]
 path = "src/lib.rs"
@@ -12,7 +12,7 @@ path = "src/main.rs"
 name = "be"
 
 [dependencies]
-chrono = "0.4.43"
+chrono = { version = "0.4.43", features = ["serde"] }
 actix-web = "4"
 tokio = { version = "1", features = ["full"] }
 reqwest = "0.12"
@@ -21,6 +21,11 @@ thiserror = "2.0.17"
 alloy = { version = "1.1.3", features = ["full"] }
 serde_json = "1.0.145"
 dotenvy = "0.15.7"
-tracing-subscriber = "0.3.22"
+tracing-subscriber = { version = "0.3", features = ["registry", "env-filter"] }
 tracing = "0.1.43"
+tracing-actix-web = "0.7"
+tracing-bunyan-formatter = "0.3.10"
+tracing-log = "0.2"
 sqlx = {version="0.8.6", features = ["runtime-tokio-rustls", "macros", "chrono", "postgres", "tls-native-tls", "tls-rustls-ring-webpki", "chrono", "uuid", "ipnetwork", "migrate"]}
+uuid = { version = "1.20.0", features = ["serde", "v4"] }
+secrecy = { version = "0.10.3", features = ["serde"] }

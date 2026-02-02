@@ -6,3 +6,7 @@ pub enum ConfigError {
     #[error("Missing environment variable: {0}")]
     MissingEnv(String),
 }
+
+// impl From<ConfigError> for std::io::Error{
+//     fn from()
+// }
