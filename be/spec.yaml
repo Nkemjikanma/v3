@@ -7,7 +7,7 @@ region: fra
 services: 
   - name: be
     # Relative to the repository root
-    dockerfile_path: Dockerfile 
+    dockerfile_path: be/Dockerfile 
     source_dir: 
     github: 
       branch: main 
