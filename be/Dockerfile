@@ -23,14 +23,13 @@ RUN cargo chef cook --release --recipe-path recipe.json
 COPY . . 
 
 ENV SQLX_OFFLINE=true
- # Build project 
 
 # Let's build our binary! 
 # We'll use the release profile to make it fast
 RUN cargo build --release --bin be 
 
 # Runtime stage
-FROM debian::bookwarm-slim AS runtime
+FROM debian:bookworm-slim AS runtime
 WORKDIR /app
 
 # Install OpenSSL - it is dynamically linked to some of our dependencies. 
@@ -44,7 +43,6 @@ RUN apt-get update -y \
 
 # copy the cmopiled binary from the builder env to our runtime env
 COPY --from=builder /app/target/release/be be 
-COPY configuration configuration 
 # Load Production env
 ENV APP_ENV=production
 
