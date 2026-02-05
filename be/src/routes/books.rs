@@ -10,7 +10,7 @@ use tracing::Instrument;
 use uuid::Uuid;
 
 #[tracing::instrument(name = "get_all_books", skip(app_state))]
-pub async fn get_all_books(req: HttpRequest, app_state: web::Data<AppState>) -> HttpResponse {
+pub async fn get_all_books(req: HttpRequest, app_state: web::Data<Arc<AppState>>) -> HttpResponse {
     HttpResponse::Ok().finish()
 }
 

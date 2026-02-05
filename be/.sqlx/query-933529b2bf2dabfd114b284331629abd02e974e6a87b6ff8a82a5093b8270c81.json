@@ -1,0 +1,39 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO books (title, author, status, category, year_read) VALUES ($1, $2, $3, $4, $5)",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text",
+        {
+          "Custom": {
+            "name": "book_status",
+            "kind": {
+              "Enum": [
+                "reading",
+                "finished"
+              ]
+            }
+          }
+        },
+        {
+          "Custom": {
+            "name": "book_category",
+            "kind": {
+              "Enum": [
+                "technical",
+                "leisure",
+                "music"
+              ]
+            }
+          }
+        },
+        "Int2"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "933529b2bf2dabfd114b284331629abd02e974e6a87b6ff8a82a5093b8270c81"
+}

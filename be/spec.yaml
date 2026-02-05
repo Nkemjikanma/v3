@@ -1,0 +1,25 @@
+#! spec.yaml 
+
+name: be
+
+# `fra` - stands for Frankfurt
+region: fra
+services: 
+  - name: be
+    # Relative to the repository root
+    dockerfile_path: Dockerfile 
+    source_dir: 
+    github: 
+      branch: main 
+      deploy_on_push: true
+      repo: nkemjikanma/v3
+    health_check: 
+      http_path: /api
+    # The port application will be listening on
+    http_port: 8000
+    # for production workload, we should get 2 but let's keep bills down 
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    # All incoming requests should be routed to our app
+    routes:
+      - path: /

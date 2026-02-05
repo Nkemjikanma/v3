@@ -4,7 +4,7 @@ use serde::Deserialize;
 #[derive(Deserialize, Debug, Clone)]
 pub struct Config {
     pub database: DBConfig,
-    pub application_port: String,
+    pub application: ApplicatioonSettings,
 }
 
 #[derive(Deserialize, Debug, Clone)]
@@ -16,14 +16,34 @@ pub struct DBConfig {
     pub database_name: String,
 }
 
+#[derive(Deserialize, Debug, Clone)]
+pub struct ApplicatioonSettings {
+    pub port: String,
+    pub host: String,
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub enum Environment {
+    Local,
+    Production,
+}
+
 impl Config {
     pub fn load_config() -> Result<Self, ConfigError> {
-        let application_port = std::env::var("APP_PORT")
-            .map_err(|_| {
-                tracing::warn!("Using default PORT: 8000");
-                ConfigError::MissingEnv("APP_PORT".to_string())
-            })
-            .unwrap_or_else(|_| "8000".to_string());
+        let application = ApplicatioonSettings {
+            port: std::env::var("APP_PORT")
+                .map_err(|_| {
+                    tracing::warn!("Using default PORT: 8000");
+                    ConfigError::MissingEnv("APP_PORT".to_string())
+                })
+                .unwrap_or_else(|_| "8000".to_string()),
+            host: std::env::var("APP_HOST")
+                .map_err(|_| {
+                    tracing::warn!("Using default HOST: 127.0.0.1");
+                    ConfigError::MissingEnv("APP_HOST".to_string())
+                })
+                .unwrap_or_else(|_| "127.0.0.1".to_string()),
+        };
         let database = DBConfig {
             username: std::env::var("DB_USERNAME")
                 .map_err(|_| {
@@ -61,7 +81,7 @@ impl Config {
                 .unwrap_or_else(|_| "coco_core".to_string()),
         };
         Ok(Self {
-            application_port,
+            application,
             database,
         })
     }
@@ -77,5 +97,26 @@ impl DBConfig {
             self.port,
             self.database_name
         ))
+    }
+}
+
+impl Environment {
+    pub fn as_str(&self) -> &'static str {
+        match self {
+            Environment::Local => "local",
+            Environment::Production => "production",
+        }
+    }
+}
+
+impl TryFrom<String> for Environment {
+    type Error = String;
+
+    fn try_from(s: String) -> Result<Self, Self::Error> {
+        match s.to_lowercase().as_str() {
+            "local" => Ok(Self::Local),
+            "prod" | "production" => Ok(Self::Production),
+            other => Err(format!("Unknown environment: {}", other)),
+        }
     }
 }

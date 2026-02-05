@@ -50,7 +50,7 @@ pub fn run(listener: TcpListener, app_state: Arc<AppState>) -> Result<Server, st
 }
 
 #[tracing::instrument(name = "pool", skip_all)]
-pub async fn create_pool(config: &config::DBConfig) -> Result<PgPool, sqlx::Error> {
+pub fn create_pool(config: &config::DBConfig) -> Result<PgPool, sqlx::Error> {
     tracing::info!("Creating db pool");
 
     let pool = PgPoolOptions::new()
@@ -58,9 +58,7 @@ pub async fn create_pool(config: &config::DBConfig) -> Result<PgPool, sqlx::Erro
         .min_connections(1)
         .acquire_timeout(Duration::from_secs(200))
         .idle_timeout(Duration::from_secs(300))
-        .connect(&config.connection_string().expose_secret())
-        .await
-        .expect("Failed to create BD Pool");
+        .connect_lazy(config.connection_string().expose_secret())?;
 
     tracing::info!("Database pool connection created");
     Ok(pool)
