@@ -4,7 +4,7 @@ name: be
 
 # `fra` - stands for Frankfurt
 region: fra
-services: 
+services:
   - name: be
     # Relative to source_dir
     dockerfile_path: Dockerfile
