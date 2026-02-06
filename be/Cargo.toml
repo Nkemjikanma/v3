@@ -29,3 +29,4 @@ tracing-log = "0.2"
 sqlx = {version="0.8.6", features = ["runtime-tokio-rustls", "macros", "chrono", "postgres", "tls-native-tls", "tls-rustls-ring-webpki", "chrono", "uuid", "ipnetwork", "migrate"]}
 uuid = { version = "1.20.0", features = ["serde", "v4"] }
 secrecy = { version = "0.10.3", features = ["serde"] }
+serde-aux = "4.7.0"

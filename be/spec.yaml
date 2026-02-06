@@ -22,6 +22,30 @@ services:
     # All incoming requests should be routed to our app
     routes:
       - path: /
+    envs:
+      - key: APP_ENV
+        scope: RUN_TIME
+        value: "production"
+      - key: APP_PORT
+        scope: RUN_TIME
+        value: "8000"
+        # Database env vars - references the 'bedb' database component
+      - key: DB_HOST
+        scope: RUN_TIME
+        value: ${bedb.HOSTNAME}
+      - key: DB_PORT
+        scope: RUN_TIME
+        value: ${bedb.PORT}
+      - key: DB_USERNAME
+        scope: RUN_TIME
+        value: ${bedb.USERNAME}
+      - key: DB_PASSWORD
+        scope: RUN_TIME
+        value: ${bedb.PASSWORD}
+        type: SECRET
+      - key: DB_NAME
+        scope: RUN_TIME
+        value: ${bedb.DATABASE}
 databases:
   - engine: PG
     name: bedb

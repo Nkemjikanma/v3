@@ -58,7 +58,7 @@ pub fn create_pool(config: &config::DBConfig) -> Result<PgPool, sqlx::Error> {
         .min_connections(1)
         .acquire_timeout(Duration::from_secs(200))
         .idle_timeout(Duration::from_secs(300))
-        .connect_lazy(config.connection_string().expose_secret())?;
+        .connect_lazy_with(config.connection_options());
 
     tracing::info!("Database pool connection created");
     Ok(pool)
