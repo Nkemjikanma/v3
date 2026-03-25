@@ -3,6 +3,8 @@ use serde::{Deserialize, Serialize};
 use sqlx::Type;
 use uuid::Uuid;
 
+use crate::common::valid_string_entry::ValidStringEntry;
+
 #[derive(Deserialize, Serialize, Debug, Clone, sqlx::FromRow)]
 pub struct Book {
     pub id: Uuid,
@@ -32,8 +34,23 @@ pub enum BookCategory {
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct BookFormData {
-    pub title: String,
-    pub author: String,
+    pub title: ValidStringEntry,
+    pub author: ValidStringEntry,
     pub status: BookStatus,
     pub category: BookCategory,
+}
+
+#[derive(Debug, Deserialize, Serialize)]
+pub struct UpdateBookFormData {
+    pub title: Option<ValidStringEntry>,
+    pub author: Option<ValidStringEntry>,
+    pub status: Option<BookStatus>,
+    pub category: Option<BookCategory>,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct BookQueryInfo {
+    pub category: Option<BookCategory>,
+    pub status: Option<BookStatus>,
+    pub year_read: Option<i16>,
 }

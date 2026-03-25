@@ -1,15 +1,15 @@
 use crate::{
     config,
-    routes::{
-        books::{add_book, get_all_books},
-        check::greet,
-        songs::songs,
-    },
+    errors::AppError,
+    routes::{books::configure_books, check::greet, songs::songs},
     types::app::AppState,
 };
 use actix_web::dev::Server;
 use actix_web::middleware::NormalizePath;
-use actix_web::{error, web, App, HttpResponse, HttpServer};
+use actix_web::{
+    error::{self, ResponseError},
+    web, App, HttpResponse, HttpServer,
+};
 use secrecy::ExposeSecret;
 use sqlx::{postgres::PgPoolOptions, PgPool};
 use std::net::TcpListener;
@@ -25,8 +25,19 @@ pub fn run(listener: TcpListener, app_state: Arc<AppState>) -> Result<Server, st
         let json_config = web::JsonConfig::default()
             .limit(4096)
             .error_handler(|err, _req| {
-                tracing::error!("Over sized JSON payload being sent in");
-                error::InternalError::from_response(err, HttpResponse::BadRequest().finish()).into()
+                let api_error = match &err {
+                    error::JsonPayloadError::Overflow { limit } => {
+                        tracing::error!("Over sized JSON payload being sent in: {limit}",);
+                        AppError::OversizedPayloadError(err.to_string())
+                    }
+
+                    _ => {
+                        tracing::error!("JSON extraction error: {}", err);
+                        AppError::ValidationError(err.to_string())
+                    }
+                };
+
+                error::InternalError::from_response(err, api_error.error_response()).into()
             });
 
         App::new()
@@ -34,9 +45,8 @@ pub fn run(listener: TcpListener, app_state: Arc<AppState>) -> Result<Server, st
             .wrap(TracingLogger::default())
             .service(
                 web::scope("/api")
+                    .configure(configure_books)
                     .route("", web::get().to(greet))
-                    .route("/books", web::get().to(get_all_books))
-                    .route("/books", web::post().to(add_book))
                     .route("/songs", web::get().to(songs)),
             )
             .app_data(connection.clone())

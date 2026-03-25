@@ -6,8 +6,8 @@ CREATE type book_category as ENUM ('technical', 'leisure', 'music');
 
 CREATE TABLE Books(
 	id UUID PRIMARY KEY DEFAULT gen_random_uuid(), 
-	title TEXT NOT NULL , 
-	author TEXT, 
+	title TEXT NOT NULL, 
+	author TEXT NOT NULL, 
 	status book_status NOT NULL DEFAULT 'reading', 
 	category book_category NOT NULL, 
 	year_read SMALLINT NOT NULL DEFAULT EXTRACT(YEAR FROM now())::SMALLINT, 

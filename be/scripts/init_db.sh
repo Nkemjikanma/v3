@@ -27,7 +27,7 @@ APP_DB_NAME="${APP_DB_NAME:=v3_db}"
 if [[ -z "${SKIP_DOCKER}" ]]
 then
 # lauch postgres using docker 
-CONTAINER_NAME="postgres"
+CONTAINER_NAME="be_postgres_db"
 docker run \
 	--env POSTGRES_USER=${SUPERUSER} \
 	--env POSTGRES_PASSWORD=${SUPERUSER_PWD} \
