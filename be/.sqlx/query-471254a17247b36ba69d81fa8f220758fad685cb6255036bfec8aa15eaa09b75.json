@@ -1,0 +1,39 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE books set title = $1, author = $2, status = $3, category = $4, updated_at = now() WHERE id = $5",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text",
+        {
+          "Custom": {
+            "name": "book_status",
+            "kind": {
+              "Enum": [
+                "reading",
+                "finished"
+              ]
+            }
+          }
+        },
+        {
+          "Custom": {
+            "name": "book_category",
+            "kind": {
+              "Enum": [
+                "technical",
+                "leisure",
+                "music"
+              ]
+            }
+          }
+        },
+        "Uuid"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "471254a17247b36ba69d81fa8f220758fad685cb6255036bfec8aa15eaa09b75"
+}

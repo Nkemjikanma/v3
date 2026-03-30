@@ -1,0 +1,72 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT id, title, artist, instrument AS \"instrument: Instrument\", started_learning_at, notes, created_at, updated_at FROM songs ORDER BY started_learning_at",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 1,
+        "name": "title",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 2,
+        "name": "artist",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 3,
+        "name": "instrument: Instrument",
+        "type_info": {
+          "Custom": {
+            "name": "instrument",
+            "kind": {
+              "Enum": [
+                "guitar",
+                "piano"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "ordinal": 4,
+        "name": "started_learning_at",
+        "type_info": "Date"
+      },
+      {
+        "ordinal": 5,
+        "name": "notes",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 6,
+        "name": "created_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 7,
+        "name": "updated_at",
+        "type_info": "Timestamptz"
+      }
+    ],
+    "parameters": {
+      "Left": []
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false
+    ]
+  },
+  "hash": "544f3746c6c39ffd5de2680a008708140ad438dc83aaa8d052034faec26067fb"
+}

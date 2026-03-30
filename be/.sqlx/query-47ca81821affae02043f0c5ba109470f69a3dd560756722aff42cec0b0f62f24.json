@@ -1,0 +1,28 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO songs (title, artist, instrument, started_learning_at, notes) VALUES ($1, $2, $3, $4, $5)",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Text",
+        {
+          "Custom": {
+            "name": "instrument",
+            "kind": {
+              "Enum": [
+                "guitar",
+                "piano"
+              ]
+            }
+          }
+        },
+        "Date",
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "47ca81821affae02043f0c5ba109470f69a3dd560756722aff42cec0b0f62f24"
+}

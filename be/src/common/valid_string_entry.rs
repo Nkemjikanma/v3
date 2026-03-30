@@ -22,11 +22,6 @@ impl ValidStringEntry {
             Ok(Self(s))
         }
     }
-
-    // the caller gets a shared ref to the inner string - read only access
-    // pub fn inner_ref(&self) -> &str {
-    //     &self.0
-    // }
 }
 
 impl AsRef<str> for ValidStringEntry {
@@ -45,44 +40,44 @@ impl TryFrom<String> for ValidStringEntry {
 
 #[cfg(test)]
 mod tests {
-    // use crate::utils::ValidStringEntry;
-    // use claims::{assert_err, assert_ok};
-    //
-    // #[test]
-    // fn valid_grapheme() {
-    //     let name = "ä".repeat(255);
-    //     assert_ok!(ValidStringEntry::parse(name));
-    // }
-    //
-    // #[test]
-    // fn invalid_grapheme() {
-    //     let name = "ä".repeat(355);
-    //     assert_err!(ValidStringEntry::parse(name));
-    // }
-    //
-    // #[test]
-    // fn reject_whitespaces() {
-    //     let name = " ".to_string();
-    //     assert_err!(ValidStringEntry::parse(name));
-    // }
-    //
-    // #[test]
-    // fn reject_empty_string() {
-    //     let name = "".to_string();
-    //     assert_err!(ValidStringEntry::parse(name));
-    // }
-    //
-    // #[test]
-    // fn reject_if_contains_illegal_chars() {
-    //     for name in &['/', '(', ')', '"', '<', '>', '\\', '{', '}'] {
-    //         let name = name.to_string();
-    //         assert_err!(ValidStringEntry::parse(name));
-    //     }
-    // }
-    //
-    // #[test]
-    // fn valid_string_passes() {
-    //     let name = "Chinua Achebe".to_string();
-    //     assert_ok!(ValidStringEntry::parse(name));
-    // }
+    use crate::common::valid_string_entry::ValidStringEntry;
+    use claims::{assert_err, assert_ok};
+
+    #[test]
+    fn valid_grapheme() {
+        let name = "ä".repeat(255);
+        assert_ok!(ValidStringEntry::parse(name));
+    }
+
+    #[test]
+    fn invalid_grapheme() {
+        let name = "ä".repeat(355);
+        assert_err!(ValidStringEntry::parse(name));
+    }
+
+    #[test]
+    fn reject_whitespaces() {
+        let name = " ".to_string();
+        assert_err!(ValidStringEntry::parse(name));
+    }
+
+    #[test]
+    fn reject_empty_string() {
+        let name = "".to_string();
+        assert_err!(ValidStringEntry::parse(name));
+    }
+
+    #[test]
+    fn reject_if_contains_illegal_chars() {
+        for name in &['/', '(', ')', '"', '<', '>', '\\', '{', '}'] {
+            let name = name.to_string();
+            assert_err!(ValidStringEntry::parse(name));
+        }
+    }
+
+    #[test]
+    fn valid_string_passes() {
+        let name = "Chinua Achebe".to_string();
+        assert_ok!(ValidStringEntry::parse(name));
+    }
 }

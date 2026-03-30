@@ -32,10 +32,49 @@ pub enum BookErrors {
     BookQueryError(String),
 }
 
+#[derive(Error, Debug)]
+pub enum SongErrors {
+    #[error("Error adding new song item: {0}")]
+    ErrorAddingSong(String),
+
+    #[error("Error updating  item: {0}")]
+    ErrorUpdatingSong(String),
+
+    #[error("Song not found: {0}")]
+    SongNotFound(String),
+
+    #[error("Something went wrong")]
+    SongQueryError(String),
+
+    #[error("Error fetchign songss: {0}")]
+    ErrorFetchingSongs(String),
+
+    #[error("Error deleting song item: {0}")]
+    ErrorDeletingSong(String),
+}
+
+#[derive(Debug, Error)]
+pub enum StepErrors {
+    #[error("Step count not found for given day")]
+    StepCountNotFound,
+
+    #[error("Something went wrong: {0}")]
+    StepQueryError(String),
+
+    #[error("Something went wrong while seting/pdating steps count")]
+    StepsSetError,
+}
+
 #[derive(Debug, Error)]
 pub enum AppError {
     #[error(transparent)]
     Books(#[from] BookErrors),
+
+    #[error(transparent)]
+    Songs(#[from] SongErrors),
+
+    #[error(transparent)]
+    Steps(#[from] StepErrors),
 
     #[error("Error occured validating payload: {0}")]
     ValidationError(String),
@@ -59,6 +98,18 @@ impl ResponseError for AppError {
             AppError::Books(BookErrors::BookQueryError(_)) => StatusCode::INTERNAL_SERVER_ERROR,
             AppError::Books(BookErrors::ErrorUpdatingBook(_)) => StatusCode::INTERNAL_SERVER_ERROR,
             AppError::Books(BookErrors::ErrorDeletingBook(_)) => StatusCode::INTERNAL_SERVER_ERROR,
+
+            AppError::Songs(SongErrors::ErrorAddingSong(_)) => StatusCode::INTERNAL_SERVER_ERROR,
+            AppError::Songs(SongErrors::ErrorUpdatingSong(_)) => StatusCode::INTERNAL_SERVER_ERROR,
+            AppError::Songs(SongErrors::SongNotFound(_)) => StatusCode::NOT_FOUND,
+            AppError::Songs(SongErrors::SongQueryError(_)) => StatusCode::INTERNAL_SERVER_ERROR,
+            AppError::Songs(SongErrors::ErrorFetchingSongs(_)) => StatusCode::INTERNAL_SERVER_ERROR,
+            AppError::Songs(SongErrors::ErrorDeletingSong(_)) => StatusCode::INTERNAL_SERVER_ERROR,
+
+            AppError::Steps(StepErrors::StepCountNotFound) => StatusCode::NOT_FOUND,
+            AppError::Steps(StepErrors::StepQueryError(_)) => StatusCode::INTERNAL_SERVER_ERROR,
+            AppError::Steps(StepErrors::StepsSetError) => StatusCode::INTERNAL_SERVER_ERROR,
+
             AppError::ValidationError(_) => StatusCode::BAD_REQUEST,
             AppError::OversizedPayloadError(_) => StatusCode::PAYLOAD_TOO_LARGE,
         }

@@ -115,7 +115,6 @@ impl BookService {
     // #[tracing::instrument(name = get)]
     #[tracing::instrument(name = "add_book",skip(book, pool), fields(book_title = ?book.title, book_author= ?book.author) )]
     pub async fn add_book(book: &BookFormData, pool: &sqlx::PgPool) -> Result<(), AppError> {
-        // let request_id = uuid::Uuid::new_v4();
         tracing::info!("Adding book to reading list");
 
         insert_book(book, pool).await?;

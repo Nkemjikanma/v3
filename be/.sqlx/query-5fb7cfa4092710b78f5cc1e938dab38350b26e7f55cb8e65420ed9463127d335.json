@@ -1,6 +1,6 @@
 {
   "db_name": "PostgreSQL",
-  "query": "SELECT id, title, author, status AS \"status: BookStatus\", category AS \"category: BookCategory\", year_read, created_at, updated_at FROM books  ORDER BY year_read",
+  "query": "SELECT id, title, author, status AS \"status: BookStatus\", category AS \"category: BookCategory\", year_read, created_at, updated_at FROM books ORDER BY year_read",
   "describe": {
     "columns": [
       {
@@ -79,5 +79,5 @@
       false
     ]
   },
-  "hash": "ee729f79b4b58969460bb715dcd14e6e61b3c07d2698f96f18385cd1734a5b1d"
+  "hash": "5fb7cfa4092710b78f5cc1e938dab38350b26e7f55cb8e65420ed9463127d335"
 }

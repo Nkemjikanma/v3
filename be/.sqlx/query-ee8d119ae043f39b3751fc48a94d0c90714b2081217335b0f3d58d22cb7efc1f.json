@@ -1,0 +1,85 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT id, title, author, status AS \"status: BookStatus\", category AS \"category: BookCategory\", year_read, created_at, updated_at FROM books WHERE id = $1",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 1,
+        "name": "title",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 2,
+        "name": "author",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 3,
+        "name": "status: BookStatus",
+        "type_info": {
+          "Custom": {
+            "name": "book_status",
+            "kind": {
+              "Enum": [
+                "reading",
+                "finished"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "ordinal": 4,
+        "name": "category: BookCategory",
+        "type_info": {
+          "Custom": {
+            "name": "book_category",
+            "kind": {
+              "Enum": [
+                "technical",
+                "leisure",
+                "music"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "ordinal": 5,
+        "name": "year_read",
+        "type_info": "Int2"
+      },
+      {
+        "ordinal": 6,
+        "name": "created_at",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 7,
+        "name": "updated_at",
+        "type_info": "Timestamptz"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Uuid"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "ee8d119ae043f39b3751fc48a94d0c90714b2081217335b0f3d58d22cb7efc1f"
+}

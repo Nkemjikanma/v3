@@ -1,16 +1,19 @@
 use crate::{
     config,
     errors::AppError,
-    routes::{books::configure_books, check::greet, songs::songs},
+    routes::{
+        books::configure_books, check::greet, songs::configure_songs, steps::configure_steps,
+    },
     types::app::AppState,
 };
+
+use actix_cors::Cors;
 use actix_web::dev::Server;
 use actix_web::middleware::NormalizePath;
 use actix_web::{
     error::{self, ResponseError},
-    web, App, HttpResponse, HttpServer,
+    web, App, HttpServer,
 };
-use secrecy::ExposeSecret;
 use sqlx::{postgres::PgPoolOptions, PgPool};
 use std::net::TcpListener;
 use std::sync::Arc;
@@ -43,11 +46,13 @@ pub fn run(listener: TcpListener, app_state: Arc<AppState>) -> Result<Server, st
         App::new()
             .wrap(NormalizePath::trim())
             .wrap(TracingLogger::default())
+            .wrap()
             .service(
                 web::scope("/api")
                     .configure(configure_books)
-                    .route("", web::get().to(greet))
-                    .route("/songs", web::get().to(songs)),
+                    .configure(configure_songs)
+                    .configure(configure_steps)
+                    .route("", web::get().to(greet)),
             )
             .app_data(connection.clone())
             .app_data(json_config)
