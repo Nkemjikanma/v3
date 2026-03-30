@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(gh api:*)"
+      "Bash(gh api:*)",
+      "Bash(ls -la /Users/nkemjika/Developer/repository/indie-hacker/personal/v3/be/*.yaml /Users/nkemjika/Developer/repository/indie-hacker/personal/v3/be/*.yml)",
+      "Bash(grep -E \"\\\\.\\(yaml|yml|toml\\)$\")",
+      "Bash(grep -E \"\\\\.rs$\")"
     ]
   }
 }
