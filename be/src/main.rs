@@ -17,7 +17,7 @@ async fn main() -> Result<(), AppError> {
         .unwrap_or_else(|_| "local".to_string())
         .try_into()
         .expect("Failed to parse env");
-    let env_file = format!(".env.{}", environment.as_str());
+    let env_file = format!(".env");
     dotenvy::from_filename(&env_file).ok();
 
     let subscriber = get_subscriber("be".into(), "info".into(), std::io::stdout);
@@ -30,7 +30,6 @@ async fn main() -> Result<(), AppError> {
     let listener = TcpListener::bind(address)?;
 
     info!("Listening here: {:?}", listener);
-    // let post = listener.local_addr().unwrap().port();
 
     let connection = create_pool(&config.database).expect("Failed to connect to Postgres");
     let app_state = Arc::new(AppState {

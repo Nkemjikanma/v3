@@ -8,11 +8,12 @@ use crate::{
 };
 
 use actix_cors::Cors;
+use actix_governor::{Governor, GovernorConfigBuilder};
 use actix_web::dev::Server;
 use actix_web::middleware::NormalizePath;
 use actix_web::{
     error::{self, ResponseError},
-    web, App, HttpServer,
+    http, web, App, HttpServer,
 };
 use sqlx::{postgres::PgPoolOptions, PgPool};
 use std::net::TcpListener;
@@ -43,10 +44,28 @@ pub fn run(listener: TcpListener, app_state: Arc<AppState>) -> Result<Server, st
                 error::InternalError::from_response(err, api_error.error_response()).into()
             });
 
+        let governor_conf = GovernorConfigBuilder::default()
+            .seconds_per_request(1)
+            .burst_size(60)
+            .finish()
+            .unwrap();
+
         App::new()
+            .wrap(
+                Cors::default()
+                    .allowed_origin("http://localhost:3000")
+                    .allowed_origin("https://nkem.dev")
+                    .allowed_methods(vec!["GET", "POST", "PUT", "PATCH", "DELETE"])
+                    .allowed_headers(vec![
+                        http::header::AUTHORIZATION,
+                        http::header::ACCEPT,
+                        http::header::CONTENT_TYPE,
+                    ])
+                    .max_age(3600),
+            )
+            .wrap(Governor::new(&governor_conf))
             .wrap(NormalizePath::trim())
             .wrap(TracingLogger::default())
-            .wrap()
             .service(
                 web::scope("/api")
                     .configure(configure_books)
@@ -78,3 +97,11 @@ pub fn create_pool(config: &config::DBConfig) -> Result<PgPool, sqlx::Error> {
     tracing::info!("Database pool connection created");
     Ok(pool)
 }
+
+// - typical ordering of middlewares
+// App::new()
+//     .wrap(actix_cors::Cors::default())
+//     .wrap(actix_web_httpauth::middleware::HttpAuthentication::bearer(...))
+//     .wrap(actix_session::SessionMiddleware::new(...))
+//     .wrap(actix_identity::IdentityMiddleware::default())
+//     .wrap(actix_limitation::RateLimiter::new(...))

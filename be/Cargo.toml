@@ -15,6 +15,7 @@ name = "be"
 chrono = { version = "0.4.43", features = ["serde"] }
 actix-web = "4"
 actix-cors = "0.7.1"
+actix-limitation = "0.5"
 tokio = { version = "1", features = ["full", "macros", "rt-multi-thread"] }
 reqwest = "0.12"
 serde = "1.0.228"
@@ -34,3 +35,4 @@ serde-aux = "4.7.0"
 unicode-segmentation = "1.9.0"
 claims = "0.8.0"
 resend-rs = "0.21.1"
+actix-governor = "0.10.0"
