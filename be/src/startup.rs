@@ -1,8 +1,10 @@
 use crate::{
+    common::utils::JWT,
     config,
     errors::AppError,
     routes::{
-        books::configure_books, check::greet, songs::configure_songs, steps::configure_steps,
+        auth::configure_auth, books::configure_books, check::greet, songs::configure_songs,
+        steps::configure_steps,
     },
     types::app::AppState,
 };
@@ -68,6 +70,7 @@ pub fn run(listener: TcpListener, app_state: Arc<AppState>) -> Result<Server, st
             .wrap(TracingLogger::default())
             .service(
                 web::scope("/api")
+                    .configure(configure_auth)
                     .configure(configure_books)
                     .configure(configure_songs)
                     .configure(configure_steps)

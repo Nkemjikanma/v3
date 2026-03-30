@@ -26,6 +26,9 @@ pub struct ApplicationSettings {
     #[serde(deserialize_with = "deserialize_number_from_string")]
     pub port: u16,
     pub host: String,
+    pub admin_username: SecretString,
+    pub admin_password_hash: SecretString,
+    pub jwt_secret: SecretString,
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -56,6 +59,16 @@ impl Config {
                     ConfigError::InvalidEnv("APP_PORT must be valid port number".to_string())
                 })?,
             host: "0.0.0.0".to_string(),
+            admin_username: SecretString::from(std::env::var("ADMIN_USERNAME").map_err(|_| {
+                ConfigError::MissingEnv("Admin username not configured".to_string())
+            })?),
+            admin_password_hash: SecretString::from(std::env::var("ADMIN_PASSWORD_HASH").map_err(
+                |_| ConfigError::MissingEnv("Admin password not configured".to_string()),
+            )?),
+            jwt_secret: SecretString::from(
+                std::env::var("JWT_SECRET")
+                    .map_err(|_| ConfigError::MissingEnv("JWT not configured".to_string()))?,
+            ),
         };
 
         let database = DBConfig {
@@ -97,6 +110,16 @@ impl Config {
                 tracing::warn!("Using default HOST: 127.0.0.1");
                 "127.0.0.1".to_string()
             }),
+            admin_username: SecretString::from(std::env::var("ADMIN_USERNAME").map_err(|_| {
+                ConfigError::MissingEnv("Admin username not configured".to_string())
+            })?),
+            admin_password_hash: SecretString::from(std::env::var("ADMIN_PASSWORD_HASH").map_err(
+                |_| ConfigError::MissingEnv("Admin password not configured".to_string()),
+            )?),
+            jwt_secret: SecretString::from(
+                std::env::var("JWT_SECRET")
+                    .map_err(|_| ConfigError::MissingEnv("JWT not configured".to_string()))?,
+            ),
         };
 
         let database = DBConfig {

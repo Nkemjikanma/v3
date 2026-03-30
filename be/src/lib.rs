@@ -3,6 +3,7 @@ pub mod config;
 pub mod email_client;
 pub mod errors;
 pub mod handlers;
+pub mod middleware;
 pub mod routes;
 pub mod services;
 pub mod startup;

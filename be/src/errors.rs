@@ -46,7 +46,7 @@ pub enum SongErrors {
     #[error("Something went wrong")]
     SongQueryError(String),
 
-    #[error("Error fetchign songss: {0}")]
+    #[error("Error fetching songs: {0}")]
     ErrorFetchingSongs(String),
 
     #[error("Error deleting song item: {0}")]
@@ -61,7 +61,7 @@ pub enum StepErrors {
     #[error("Something went wrong: {0}")]
     StepQueryError(String),
 
-    #[error("Something went wrong while seting/pdating steps count")]
+    #[error("Something went wrong while setting/updating steps count")]
     StepsSetError,
 }
 
@@ -81,6 +81,18 @@ pub enum AppError {
 
     #[error("Error caused by oversized payload: {0}")]
     OversizedPayloadError(String),
+
+    #[error("Error hashing password: {0}")]
+    PasswordHashingError(String),
+
+    #[error("Error signing in: invalid user credentials")]
+    InvalidUserCredentials,
+
+    #[error("Error creating JWT token")]
+    JWTCreationFailed,
+
+    #[error("Invalid token provided to validator")]
+    InvalidToken,
 }
 
 impl ResponseError for AppError {
@@ -110,6 +122,10 @@ impl ResponseError for AppError {
             AppError::Steps(StepErrors::StepQueryError(_)) => StatusCode::INTERNAL_SERVER_ERROR,
             AppError::Steps(StepErrors::StepsSetError) => StatusCode::INTERNAL_SERVER_ERROR,
 
+            AppError::PasswordHashingError(_) => StatusCode::INTERNAL_SERVER_ERROR,
+            AppError::InvalidUserCredentials => StatusCode::UNAUTHORIZED,
+            AppError::JWTCreationFailed => StatusCode::INTERNAL_SERVER_ERROR,
+            AppError::InvalidToken => StatusCode::UNAUTHORIZED,
             AppError::ValidationError(_) => StatusCode::BAD_REQUEST,
             AppError::OversizedPayloadError(_) => StatusCode::PAYLOAD_TOO_LARGE,
         }
