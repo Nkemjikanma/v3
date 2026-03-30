@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO daily_steps (date, step_count) VALUES ($1, $2) ON CONFLICT (date) DO UPDATE SET step_count = excluded.step_count, updated_at = now()",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Date",
+        "Int4"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "5730a376fad8ba87d21af9f461ad79da22c87684dad0c83569184421fe5533d2"
+}
