@@ -1,4 +1,5 @@
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
+import { useAuth } from "../context/AuthContext";
 import {
   Song,
   SongFormData,
@@ -30,29 +31,32 @@ export function useGetSong(id: string) {
 }
 
 export function useAddSong() {
+  const { token } = useAuth();
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (song: SongFormData) => post<string>("/songs", song),
+    mutationFn: (song: SongFormData) => post<string>("/songs", token!, song),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["songs"] }),
   });
 }
 
 export function useUpdateSong(id: string) {
+  const { token } = useAuth();
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: (song: UpdateSongFormData) =>
-      patch<string>(`/songs/${id}`, song),
+      patch<string>(`/songs/${id}`, token!, song),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["songs"] }),
   });
 }
 
 export function useDeleteSong(id: string) {
+  const { token } = useAuth();
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: () => del<string>(`/songs/${id}`),
+    mutationFn: () => del<string>(`/songs/${id}`, token!),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["songs"] }),
   });
 }

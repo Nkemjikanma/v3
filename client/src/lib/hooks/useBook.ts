@@ -1,4 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useAuth } from "../context/AuthContext";
 import { get, post, patch, del } from "../api";
 import {
   Book,
@@ -32,29 +33,32 @@ export function useGetBook(id: string) {
 }
 
 export function useAddBook() {
+  const { token } = useAuth();
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (book: BookFormData) => post<string>("/books", book),
+    mutationFn: (book: BookFormData) => post<string>("/books", token!, book),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["books"] }),
   });
 }
 
 export function useUpdateBook(id: string) {
+  const { token } = useAuth();
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: (book: UpdateBookFormData) =>
-      patch<string>(`/books/${id}`, book),
+      patch<string>(`/books/${id}`, token!, book),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["books", id] }),
   });
 }
 
 export function useDeleteBook(id: string) {
+  const { token } = useAuth();
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: () => del<string>(`/books/${id}`),
+    mutationFn: () => del<string>(`/books/${id}`, token!),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["books", id] }),
   });
 }

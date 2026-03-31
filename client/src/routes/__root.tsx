@@ -1,11 +1,17 @@
 import {
-  createRootRoute,
+  createRootRouteWithContext,
   Link,
   Outlet,
   useLocation,
 } from "@tanstack/react-router";
+import type { QueryClient } from "@tanstack/react-query"
 
-export const Route = createRootRoute({
+export interface MyRouterContext {
+  queryClient: QueryClient
+  isAuthenticated: boolean
+}
+
+export const Route = createRootRouteWithContext<MyRouterContext>()({
   component: RootLayout,
 });
 

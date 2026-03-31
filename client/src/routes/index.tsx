@@ -1,16 +1,11 @@
-import { createRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { experiences, personal_projects, socials } from "../lib/constants";
-import { useGetPosts } from "../lib/hooks/useGetPosts";
-import { Route as rootRoute } from "./__root";
 
-export const Route = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/",
+export const Route = createFileRoute("/")({
   component: Landing,
 });
 
 function Landing() {
-  const { data: posts, isLoading } = useGetPosts();
 
   return (
     <div className="flex flex-col gap-12">
@@ -117,29 +112,29 @@ function Landing() {
           </a>
         </div>
         <ul className="mt-4 flex flex-col gap-4 sm:gap-3">
-          {isLoading ? (
-            <li className="text-black text-sm">Loading posts...</li>
-          ) : posts && posts.length > 0 ? (
-            posts.slice(0, 3).map((post) => (
-              <li key={post.slug}>
-                <a
-                  href={post.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline group"
-                >
-                  <span className="font-outfitRegular group-hover:text-gray-600 transition-colors">
-                    {post.title}
-                  </span>
-                  <span className="text-black text-sm mt-1 sm:mt-0">
-                    {post.date}
-                  </span>
-                </a>
-              </li>
-            ))
-          ) : (
-            <li className="text-black text-sm">No posts yet</li>
-          )}
+          {/* {isLoading ? ( */}
+          {/*   <li className="text-black text-sm">Loading posts...</li> */}
+          {/* ) : posts && posts.length > 0 ? ( */}
+          {/*   posts.slice(0, 3).map((post) => ( */}
+          {/*     <li key={post.slug}> */}
+          {/*       <a */}
+          {/*         href={post.url} */}
+          {/*         target="_blank" */}
+          {/*         rel="noreferrer" */}
+          {/*         className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline group" */}
+          {/*       > */}
+          {/*         <span className="font-outfitRegular group-hover:text-gray-600 transition-colors"> */}
+          {/*           {post.title} */}
+          {/*         </span> */}
+          {/*         <span className="text-black text-sm mt-1 sm:mt-0"> */}
+          {/*           {post.date} */}
+          {/*         </span> */}
+          {/*       </a> */}
+          {/*     </li> */}
+          {/*   )) */}
+          {/* ) : ( */}
+          {/*   <li className="text-black text-sm">No posts yet</li> */}
+          {/* )} */}
         </ul>
       </section>
     </div>
