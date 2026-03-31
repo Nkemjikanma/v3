@@ -1,4 +1,4 @@
-import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
+import { createFileRoute, Outlet, redirect, Link } from '@tanstack/react-router'
 
 export const Route = createFileRoute("/admin/")({
   beforeLoad: ({ context }) => {
@@ -6,14 +6,32 @@ export const Route = createFileRoute("/admin/")({
       throw redirect({ to: '/admin/login' })
     }
   },
-  component: AdminComponent,
+  component: AdminLayout,
 })
 
-function AdminComponent() {
+function AdminLayout() {
   return (
-    <div>
-      <h1>Admin Page</h1>
-      <Outlet /> {/* This is where child routes will render */}
+    <div className="space-y-6">
+      <div className="flex justify-between items-center">
+        <h1 className="text-2xl font-outfitSemiBold">Admin</h1>
+        <nav className="flex gap-4 text-sm">
+          <Link
+            to="/admin/books"
+            className="hover:underline"
+            activeProps={{ className: "font-outfitBold underline" }}
+          >
+            Books
+          </Link>
+          <Link
+            to="/admin/songs"
+            className="hover:underline"
+            activeProps={{ className: "font-outfitBold underline" }}
+          >
+            Songs
+          </Link>
+        </nav>
+      </div>
+      <Outlet />
     </div>
   )
 }

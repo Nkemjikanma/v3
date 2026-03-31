@@ -42,23 +42,23 @@ export function useAddBook() {
   });
 }
 
-export function useUpdateBook(id: string) {
+export function useUpdateBook() {
   const { token } = useAuth();
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (book: UpdateBookFormData) =>
+    mutationFn: ({ id, book }: { id: string; book: UpdateBookFormData }) =>
       patch<string>(`/books/${id}`, token!, book),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["books", id] }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["books"] }),
   });
 }
 
-export function useDeleteBook(id: string) {
+export function useDeleteBook() {
   const { token } = useAuth();
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: () => del<string>(`/books/${id}`, token!),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["books", id] }),
+    mutationFn: (id: string) => del<string>(`/books/${id}`, token!),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["books"] }),
   });
 }

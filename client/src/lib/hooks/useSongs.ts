@@ -40,23 +40,23 @@ export function useAddSong() {
   });
 }
 
-export function useUpdateSong(id: string) {
+export function useUpdateSong() {
   const { token } = useAuth();
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (song: UpdateSongFormData) =>
+    mutationFn: ({ id, song }: { id: string; song: UpdateSongFormData }) =>
       patch<string>(`/songs/${id}`, token!, song),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["songs"] }),
   });
 }
 
-export function useDeleteSong(id: string) {
+export function useDeleteSong() {
   const { token } = useAuth();
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: () => del<string>(`/songs/${id}`, token!),
+    mutationFn: (id: string) => del<string>(`/songs/${id}`, token!),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["songs"] }),
   });
 }

@@ -1,22 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useGetReads } from "../lib/hooks/useGetReads";
+import { Song } from "../lib/types"
+import { useGetBooks } from "../lib/hooks/useBook"
+import { useGetSongs } from "../lib/hooks/useSongs"
 
 export const Route = createFileRoute("/about")({
   component: About,
 });
 
-const guitarSongs = [{ name: "Learning in progress...", artist: "" }];
 
 function About() {
-  const { data: booksData, isLoading, error } = useGetReads();
+  // const { data: booksData, isLoading, error } = useGetReads();
+  const { data: books, isLoading, error } = useGetBooks({ status: "reading" });
+  const { data: songs, isLoading: songsLoading } = useGetSongs();
 
-  const books = booksData
-    ?.flat()
-    .filter((item) => item?.items?.[0]?.volumeInfo)
-    .map((item) => ({
-      title: item.items[0].volumeInfo.title,
-      author: item.items[0].volumeInfo.authors?.join(", "),
-    }));
   return (
     <div className="flex flex-col gap-12">
       {/* Personal */}
@@ -41,7 +37,7 @@ function About() {
             <li className="text-black text-sm">Could not load books</li>
           ) : books && books.length > 0 ? (
             books.map((book) => (
-              <li key={book.title} className="flex flex-col">
+              <li key={book.id} className="flex flex-col">
                 <span className="font-outfitRegular">{book.title}</span>
                 <span className="text-black text-sm">{book.author}</span>
               </li>
@@ -52,21 +48,27 @@ function About() {
         </ul>
       </section>
 
-      {/* Guitar */}
+      {/* Songs */}
       <section>
         <h2 className="text-sm font-outfitSemiBold text-black uppercase tracking-wide">
-          Guitar
+          Songs I am scoring
         </h2>
         <p className="mt-2 text-black text-sm">Songs I'm learning to play</p>
         <ul className="mt-4 flex flex-col gap-2">
-          {guitarSongs.map((song, index) => (
-            <li key={index} className="flex justify-between items-baseline">
-              <span className="font-outfitRegular">{song.name}</span>
-              {song.artist && (
-                <span className="text-black text-sm">{song.artist}</span>
-              )}
-            </li>
-          ))}
+          {songsLoading ? (
+            <li className="text-black text-sm">Loading...</li>
+          ) : songs && songs.length > 0 ? (
+            songs.map((song) => (
+              <li key={song.id} className="flex justify-between items-baseline">
+                <span className="font-outfitRegular">{song.title}</span>
+                <span className="text-black text-sm">
+                  {song.artist} · {song.instrument}
+                </span>
+              </li>
+            ))
+          ) : (
+            <li className="text-black text-sm">No songs yet</li>
+          )}
         </ul>
       </section>
     </div>
