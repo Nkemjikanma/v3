@@ -8,7 +8,13 @@ import './index.css'
 import { useAuth } from "./lib/context/AuthContext"
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1
+    }
+  }
+});
 
 // Set up a Router instance
 const router = createRouter({

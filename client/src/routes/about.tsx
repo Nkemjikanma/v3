@@ -50,7 +50,7 @@ function About() {
       {/* Songs */}
       <section>
         <h2 className="text-sm font-outfitSemiBold text-black uppercase tracking-wide">
-          Songs I am scoring
+          Music is life
         </h2>
         <p className="mt-2 text-black text-sm">Songs I'm learning to play</p>
         <ul className="mt-4 flex flex-col gap-2">
