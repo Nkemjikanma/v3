@@ -15,7 +15,7 @@ use actix_web::dev::Server;
 use actix_web::middleware::NormalizePath;
 use actix_web::{
     error::{self, ResponseError},
-    http, web, App, HttpServer,
+    http, web, App, HttpResponse, HttpServer,
 };
 use sqlx::{postgres::PgPoolOptions, PgPool};
 use std::net::TcpListener;
