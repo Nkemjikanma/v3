@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Song } from "../lib/types"
 import { useGetBooks } from "../lib/hooks/useBook"
 import { useGetSongs } from "../lib/hooks/useSongs"
 
