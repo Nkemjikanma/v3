@@ -2,14 +2,18 @@ use crate::common::{
     utils::{PasswordUtils, JWT},
     valid_string_entry::ValidStringEntry,
 };
+use crate::config::ApplicationSettings;
 use crate::errors::AppError;
-use crate::types::{app::AppState, auth::LoginForm};
+use crate::types::auth::LoginForm;
 use secrecy::ExposeSecret;
 pub struct AuthService;
 
 impl AuthService {
-    #[tracing::instrument(name = "signing in", skip(login_body, app_state))]
-    pub async fn login(login_body: LoginForm, app_state: &AppState) -> Result<String, AppError> {
+    #[tracing::instrument(name = "signing in", skip(login_body, app_settings))]
+    pub async fn login(
+        login_body: LoginForm,
+        app_settings: &ApplicationSettings,
+    ) -> Result<String, AppError> {
         let LoginForm { username, password } = login_body;
 
         let validated_username =
@@ -20,9 +24,7 @@ impl AuthService {
             .to_string();
 
         if validated_username.as_ref().to_lowercase().to_string()
-            != app_state
-                .app_config
-                .application
+            != app_settings
                 .admin_username
                 .expose_secret()
                 .to_lowercase()
@@ -35,11 +37,7 @@ impl AuthService {
 
         if !PasswordUtils::verify_password(
             &validated_password,
-            app_state
-                .app_config
-                .application
-                .admin_password_hash
-                .expose_secret(),
+            app_settings.admin_password_hash.expose_secret(),
         ) {
             tracing::warn!("Invalid login attempt");
 
@@ -51,7 +49,7 @@ impl AuthService {
         // generate JWT
         let token = JWT::generate_token(
             &validated_username.as_ref(),
-            &app_state.app_config.application.jwt_secret.expose_secret(),
+            &app_settings.jwt_secret.expose_secret(),
         )
         .map_err(|_| {
             tracing::error!("Error generating jwt");
