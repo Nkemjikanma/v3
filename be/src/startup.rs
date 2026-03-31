@@ -68,6 +68,10 @@ pub fn run(listener: TcpListener, app_state: Arc<AppState>) -> Result<Server, st
             .wrap(Governor::new(&governor_conf))
             .wrap(NormalizePath::trim())
             .wrap(TracingLogger::default())
+            .route(
+                "/health",
+                web::get().to(|| async { HttpResponse::Ok().finish() }),
+            )
             .service(
                 web::scope("/api")
                     .configure(configure_auth)
