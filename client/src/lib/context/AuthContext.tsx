@@ -14,13 +14,15 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 	const router = useRouter()
 
 
-	const [token, setToken] = useState<string | null>(null);
+	const [token, setToken] = useState<string | null>(() => localStorage.getItem("token"));
 
 	const login = (authToken: string) => {
+		localStorage.setItem("token", authToken)
 		setToken(authToken)
 	};
 
 	const logout = () => {
+		localStorage.removeItem("token")
 		setToken(null)
 		router.invalidate()
 	}
