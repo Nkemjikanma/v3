@@ -77,8 +77,7 @@ pub fn run(listener: TcpListener, app_state: Arc<AppState>) -> Result<Server, st
                     .configure(configure_auth)
                     .configure(configure_books)
                     .configure(configure_songs)
-                    .configure(configure_steps)
-                    .route("", web::get().to(greet)),
+                    .configure(configure_steps),
             )
             .app_data(connection.clone())
             .app_data(json_config)

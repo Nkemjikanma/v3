@@ -9,7 +9,7 @@ pub fn configure_steps(cfg: &mut web::ServiceConfig) {
         web::scope("/steps")
             .route("", web::get().to(steps::get_steps))
             .service(
-                web::scope("/steps")
+                web::scope("/admin/steps")
                     .wrap(auth_middleware)
                     .route("", web::post().to(steps::set_steps)),
             ),
