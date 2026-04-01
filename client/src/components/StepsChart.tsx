@@ -22,7 +22,7 @@ export default function StepsChart() {
           labelFormatter={(d) => new Date(d).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
           formatter={(value: any) => [value.toLocaleString(), "Steps"]}
         />
-        <Bar dataKey="step_count" fill="#1f2937" radius={[3, 3, 0, 0]} />
+        <Bar dataKey="step_count" fill="#1f2937" radius={[3, 3, 0, 0]} barSize={6} />
       </BarChart>
 
 
