@@ -52,11 +52,11 @@ impl Config {
 
     fn production_config() -> Result<Self, ConfigError> {
         let application = ApplicationSettings {
-            port: std::env::var("APP_PORT")
+            port: std::env::var("PORT")
                 .unwrap_or_else(|_| "8000".to_string())
                 .parse()
                 .map_err(|_| {
-                    ConfigError::InvalidEnv("APP_PORT must be valid port number".to_string())
+                    ConfigError::InvalidEnv("PORT must be valid port number".to_string())
                 })?,
             host: "0.0.0.0".to_string(),
             admin_username: SecretString::from(std::env::var("ADMIN_USERNAME").map_err(|_| {
@@ -99,14 +99,14 @@ impl Config {
 
     fn local_config() -> Result<Self, ConfigError> {
         let application = ApplicationSettings {
-            port: std::env::var("APP_PORT")
+            port: std::env::var("PORT")
                 .unwrap_or_else(|_| {
                     tracing::warn!("Using default PORT: 8000");
                     "8000".to_string()
                 })
                 .parse()
                 .unwrap_or(8000),
-            host: std::env::var("APP_HOST").unwrap_or_else(|_| {
+            host: std::env::var("HOST").unwrap_or_else(|_| {
                 tracing::warn!("Using default HOST: 127.0.0.1");
                 "127.0.0.1".to_string()
             }),
