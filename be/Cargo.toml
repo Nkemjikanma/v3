@@ -26,7 +26,7 @@ tracing = "0.1.43"
 tracing-actix-web = "0.7"
 tracing-bunyan-formatter = "0.3.10"
 tracing-log = "0.2"
-sqlx = {version="0.8.6", features = ["runtime-tokio-rustls", "macros", "postgres", "tls-rustls-ring-webpki", "chrono", "uuid", "ipnetwork", "migrate"]}
+sqlx = { version = "0.8.6", features = ["runtime-tokio-rustls", "macros", "postgres", "tls-rustls-ring-webpki", "chrono", "uuid", "ipnetwork", "migrate"] }
 uuid = { version = "1.20.0", features = ["serde", "v4"] }
 secrecy = { version = "0.10.3", features = ["serde"] }
 serde-aux = "4.7.0"
@@ -34,5 +34,5 @@ unicode-segmentation = "1.9.0"
 claims = "0.8.0"
 actix-governor = "0.10.0"
 argon2 = "0.5.3"
-jsonwebtoken = "10.3.0"
+jsonwebtoken = { version = "10.3.0", features = ["rust_crypto"] }
 actix-web-httpauth = "0.8.2"

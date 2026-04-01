@@ -19,6 +19,7 @@ pub struct Book {
 
 #[derive(Debug, Clone, Serialize, Deserialize, Type, PartialEq)]
 #[sqlx(type_name = "book_status", rename_all = "lowercase")]
+#[serde(rename_all = "lowercase")]
 pub enum BookStatus {
     Reading,
     Finished,
@@ -26,6 +27,7 @@ pub enum BookStatus {
 
 #[derive(Debug, Clone, Serialize, Deserialize, Type, PartialEq)]
 #[sqlx(type_name = "book_category", rename_all = "lowercase")]
+#[serde(rename_all = "lowercase")]
 pub enum BookCategory {
     Technical,
     Leisure,

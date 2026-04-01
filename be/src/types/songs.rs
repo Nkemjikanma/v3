@@ -19,6 +19,7 @@ pub struct Song {
 
 #[derive(Debug, Clone, Serialize, Deserialize, Type, PartialEq)]
 #[sqlx(type_name = "instrument", rename_all = "lowercase")]
+#[serde(rename_all = "lowercase")]
 pub enum Instrument {
     Guitar,
     Piano,
