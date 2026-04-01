@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useState } from "react";
-import { useNavigate } from "@tanstack/react-router";
+import { useRouter, useNavigate } from "@tanstack/react-router";
 import { useAuth } from "../../lib/context/AuthContext";
 import { post } from "../../lib/api";
 
@@ -14,6 +14,7 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
+  const router = useRouter();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -24,6 +25,7 @@ export default function LoginPage() {
     try {
       const token = await post<string>("/auth/login", "", { username, password });
       login(token);
+      router.invalidate();
       navigate({ to: "/admin" });
     } catch (err) {
       setError(err instanceof Error ? err.message : "Login failed");

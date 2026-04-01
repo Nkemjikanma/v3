@@ -29,7 +29,7 @@ function About() {
         <h2 className="text-sm font-outfitSemiBold text-black uppercase tracking-wide">
           Currently Reading
         </h2>
-        <ul className="mt-4 flex flex-col gap-3">
+        <ul className="mt-4 flex flex-col gap-3 max-h-64 overflow-y-auto">
           {isLoading ? (
             <li className="text-black text-sm">Loading...</li>
           ) : error ? (
@@ -53,7 +53,7 @@ function About() {
           Music is life
         </h2>
         <p className="mt-2 text-black text-sm">Songs I'm learning to play</p>
-        <ul className="mt-4 flex flex-col gap-2">
+        <ul className="mt-4 flex flex-col gap-2 max-h-64 overflow-y-auto">
           {songsLoading ? (
             <li className="text-black text-sm">Loading...</li>
           ) : songs && songs.length > 0 ? (
