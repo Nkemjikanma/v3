@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useGetBooks } from "../lib/hooks/useBook";
 import { useGetSongs } from "../lib/hooks/useSongs";
+import StepsChart from "../components/StepsChart";
 
 export const Route = createFileRoute("/about")({
   component: About,
@@ -85,6 +86,15 @@ function About() {
             <li className="text-gray-400 text-sm">No songs yet</li>
           )}
         </ul>
+      </section>
+
+      <section className="bg-gray-50 rounded-lg p-4">
+        <h2 className="text-sm font-outfitSemiBold text-black uppercase tracking-wide">
+          I run sometimes
+        </h2>
+        <div className="mt-4">
+          <StepsChart />
+        </div>
       </section>
     </div>
   );
