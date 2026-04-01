@@ -35,7 +35,8 @@ export function useAddSong() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (song: SongFormData) => post<string>("/songs", token!, song),
+    mutationFn: (song: SongFormData) =>
+      post<string>("/admin/songs", token!, song),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["songs"] }),
   });
 }
@@ -46,7 +47,7 @@ export function useUpdateSong() {
 
   return useMutation({
     mutationFn: ({ id, song }: { id: string; song: UpdateSongFormData }) =>
-      patch<string>(`/songs/${id}`, token!, song),
+      patch<string>(`/admin/songs/${id}`, token!, song),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["songs"] }),
   });
 }
@@ -56,7 +57,7 @@ export function useDeleteSong() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (id: string) => del<string>(`/songs/${id}`, token!),
+    mutationFn: (id: string) => del<string>(`/admin/songs/${id}`, token!),
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["songs"] }),
   });
 }
