@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://nkem.dev/blog/sitemap.xml
