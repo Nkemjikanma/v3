@@ -11,4 +11,5 @@
   status = 200
 
 [build]
-  ignore = "git diff --quiet HEAD^ HEAD -- client/"
+  # Skip the deploy when nothing under client/ changed (runs from the base directory).
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- ."
