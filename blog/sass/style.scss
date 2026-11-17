@@ -417,3 +417,16 @@ a {
         gap: 1.5rem;
     }
 }
+
+// Journal
+.journal-intro {
+    font-size: 0.875rem;
+    color: var(--color-gray-600);
+    margin-bottom: var(--gap-small);
+}
+
+.post-item .title-desc .entry-tags {
+    font-style: normal;
+    font-family: monospace;
+    font-size: 0.75rem;
+}

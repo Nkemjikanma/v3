@@ -47,7 +47,7 @@
 <div class="progress-bar" id="progress-bar"></div>
 
 <article class="post">
-  <a href="{{ get_url(path='/') }}" class="back-link">← Back to posts</a>
+  {% block back_link %}<a href="{{ get_url(path='/') }}" class="back-link">← Back to posts</a>{% endblock back_link %}
 
   <header>
     <h1>{{ page.title }}</h1>
