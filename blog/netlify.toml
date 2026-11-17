@@ -4,6 +4,8 @@
 base    = "blog"
 publish = "public"
 command = "zola build"
+# Skip the deploy when nothing under blog/ changed (runs from the base directory).
+ignore  = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- ."
 
 [build.environment]
 # Set the version name that you want to use and Netlify will automatically use it.

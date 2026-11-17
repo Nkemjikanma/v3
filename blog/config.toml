@@ -25,14 +25,14 @@ feed_filenames = ["rss.xml"]
 # Allow syntax highlighting
 # highlight_code = true
 
+[markdown.highlighting]
+theme = "catppuccin-mocha"
+
 # Theme dependent settings
 [extra]
 
 # Activate the Dark mode
 theme = "auto"
-
-[markdown.highlighting]
-theme = "catppuccin-mocha"
 
 # Social links
 socials = [
