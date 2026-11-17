@@ -4,8 +4,10 @@
 base    = "blog"
 publish = "public"
 command = "zola build"
-# Skip the deploy when nothing under blog/ changed (runs from the base directory).
-ignore  = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- ."
+# Skip the deploy when this commit changed nothing in this site's folder (runs from the base
+# directory). Compare with HEAD^, not $CACHED_COMMIT_REF: a PR merge has the same files as the
+# preview Netlify already built, so the cached ref would cancel every production deploy.
+ignore  = "git diff --quiet HEAD^ HEAD -- ."
 
 [build.environment]
 # Set the version name that you want to use and Netlify will automatically use it.
