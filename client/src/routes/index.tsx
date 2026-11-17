@@ -84,9 +84,10 @@ function Landing() {
                 ) : (
                   <span className="inline-flex rounded-full h-2 w-2 bg-gray-300"></span>
                 )}
-                <a href={exp.url} target="_blank" rel="noreferre">
+                <a href={exp.url} target="_blank" rel="noreferrer">
                   {exp.name}
                 </a>
+                <span className="text-gray-500 text-sm">· {exp.role}</span>
               </span>
               <span className="text-black text-sm mt-1 sm:mt-0 pl-4 sm:pl-0">
                 {exp.duration}
