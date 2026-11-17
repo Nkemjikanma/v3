@@ -29,4 +29,22 @@ title %} {% block content %}
         {% endfor %}
     </ul>
 </section>
+<section>
+    <div class="section-title">
+        <h2>Journal</h2>
+        <a href="{{ get_url(path='journal/') }}" class="view-all">view all</a>
+    </div>
+
+    {% set journal_section = get_section(path="journal/_index.md") %}
+    <ul class="posts">
+        {% for page in journal_section.pages %}{% if loop.index <= 5 %}
+        <li class="post-item">
+            <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
+            <span class="post-date"
+                >{{ page.date | date(format="%b %d, %Y") }}</span
+            >
+        </li>
+        {% endif %}{% endfor %}
+    </ul>
+</section>
 {% endblock content %}

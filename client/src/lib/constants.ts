@@ -13,19 +13,22 @@ export const introItems = [
 export const experiences = [
   {
     discStyle: "Present",
-    name: "Freelance",
-    duration: "Oct. 2024 - Present ",
+    name: "Siimple.ai",
+    role: "Lead Software Engineer",
+    duration: "Nov. 2025 - Present",
   },
   {
     discStyle: "Past",
     name: "Navro",
-    duration: "Nov. 2022 - Sept. 2024",
+    role: "Frontend Software Engineer",
+    duration: "Oct. 2022 - Sept. 2024",
     url: "https://navro.com/",
   },
   {
     discStyle: "Past",
-    name: "Thames composite",
-    duration: "Jan. 2021 - Oct. 2021",
+    name: "Thames Composites",
+    role: "Web Developer",
+    duration: "Jan. 2021 - Sept. 2022",
   },
 ];
 
