@@ -27,9 +27,9 @@ function About() {
       <section>
         <p className="text-black leading-relaxed">
           Father and husband. Guitarist and songwriter.
-          <br />I am currently working as a Freelance Software engineer. I also
-          enjoy reading - mostly fiction, creating music, and building things
-          that hopefully solve real problems.
+          <br />I'm a software engineer at Siimple.ai. Outside work I read a
+          lot, mostly fiction, though lately more technical books. I make music,
+          and I build things that hopefully solve real problems.
         </p>
       </section>
 

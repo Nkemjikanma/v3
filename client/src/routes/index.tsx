@@ -5,20 +5,26 @@ export const Route = createFileRoute("/")({
   component: Landing,
 });
 
-function Landing() {
+// Hidden until the first blog post is published.
+const SHOW_WRITING = false;
 
+function Landing() {
   return (
     <div className="flex flex-col gap-12">
       {/* Intro */}
       <section>
         <h1 className="text-2xl font-outfitSemiBold">Nkemjika Ohanyere</h1>
-        <p className="text-black mt-1">Fullstack Software Engineer</p>
+        <p className="text-black mt-1">
+          Software Engineer · Rust & distributed systems
+        </p>
         <p className="text-black mt-4 leading-relaxed">
           If you're wondering how to say my name, just call me
-          <span className="font-outfitBold"> Kemji</span>. I am a software
-          engineer with a passion for building technologies that broaden access
-          and improve financial services. I am currently working as a freelance
-          sofware engineer building with Rust, Solidity & TypeScript.
+          <span className="font-outfitBold"> Kemji</span>. I design and build
+          distributed, reliable systems and keep them running. I'm a software
+          engineer at Siimple.ai, where we make login and verification apps for
+          e-commerce stores. Outside work I build in Rust, and I spend most of
+          my free time reading technical books. Right now that's replication,
+          consistency and transactions.
         </p>
         <div className="flex gap-6 mt-6">
           <p>You can find me on: </p>
@@ -98,46 +104,48 @@ function Landing() {
       </section>
 
       {/* Writing */}
-      <section>
-        <div className="flex justify-between items-baseline">
-          <h2 className="text-sm font-outfitSemiBold text-black uppercase tracking-wide">
-            Writing
-          </h2>
-          <a
-            href="https://nkem.dev/blog"
-            target="_blank"
-            rel="noreferrer"
-            className="text-sm text-black hover:text-gray-600 transition-colors"
-          >
-            view all →
-          </a>
-        </div>
-        <ul className="mt-4 flex flex-col gap-4 sm:gap-3">
-          {/* {isLoading ? ( */}
-          {/*   <li className="text-black text-sm">Loading posts...</li> */}
-          {/* ) : posts && posts.length > 0 ? ( */}
-          {/*   posts.slice(0, 3).map((post) => ( */}
-          {/*     <li key={post.slug}> */}
-          {/*       <a */}
-          {/*         href={post.url} */}
-          {/*         target="_blank" */}
-          {/*         rel="noreferrer" */}
-          {/*         className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline group" */}
-          {/*       > */}
-          {/*         <span className="font-outfitRegular group-hover:text-gray-600 transition-colors"> */}
-          {/*           {post.title} */}
-          {/*         </span> */}
-          {/*         <span className="text-black text-sm mt-1 sm:mt-0"> */}
-          {/*           {post.date} */}
-          {/*         </span> */}
-          {/*       </a> */}
-          {/*     </li> */}
-          {/*   )) */}
-          {/* ) : ( */}
-          {/*   <li className="text-black text-sm">No posts yet</li> */}
-          {/* )} */}
-        </ul>
-      </section>
+      {SHOW_WRITING && (
+        <section>
+          <div className="flex justify-between items-baseline">
+            <h2 className="text-sm font-outfitSemiBold text-black uppercase tracking-wide">
+              Writing
+            </h2>
+            <a
+              href="https://nkem.dev/blog"
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm text-black hover:text-gray-600 transition-colors"
+            >
+              view all →
+            </a>
+          </div>
+          <ul className="mt-4 flex flex-col gap-4 sm:gap-3">
+            {/* {isLoading ? ( */}
+            {/*   <li className="text-black text-sm">Loading posts...</li> */}
+            {/* ) : posts && posts.length > 0 ? ( */}
+            {/*   posts.slice(0, 3).map((post) => ( */}
+            {/*     <li key={post.slug}> */}
+            {/*       <a */}
+            {/*         href={post.url} */}
+            {/*         target="_blank" */}
+            {/*         rel="noreferrer" */}
+            {/*         className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline group" */}
+            {/*       > */}
+            {/*         <span className="font-outfitRegular group-hover:text-gray-600 transition-colors"> */}
+            {/*           {post.title} */}
+            {/*         </span> */}
+            {/*         <span className="text-black text-sm mt-1 sm:mt-0"> */}
+            {/*           {post.date} */}
+            {/*         </span> */}
+            {/*       </a> */}
+            {/*     </li> */}
+            {/*   )) */}
+            {/* ) : ( */}
+            {/*   <li className="text-black text-sm">No posts yet</li> */}
+            {/* )} */}
+          </ul>
+        </section>
+      )}
     </div>
   );
 }
