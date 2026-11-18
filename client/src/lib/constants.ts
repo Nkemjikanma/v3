@@ -34,6 +34,13 @@ export const experiences = [
 
 export const personal_projects = [
   {
+    name: "Esemese",
+    link: "https://github.com/Nkemjikanma/esemese-backend-server",
+    icon: "📷",
+    description:
+      "Rust backend for my photography portfolio, with a parallel image pipeline",
+  },
+  {
     name: "Pepino",
     link: "https://crates.io/crates/pepino",
     icon: "🥒",
@@ -45,6 +52,12 @@ export const personal_projects = [
     link: "https://app.towns.com/bot/0x1aFb580ED1AdE828431419B1bd54Aeb1133B7e46",
     icon: "🤖",
     description: "An ENS domains management bot built for Towns app",
+  },
+  {
+    name: "rens",
+    link: "https://github.com/Nkemjikanma/rens",
+    icon: "🔎",
+    description: "A Rust library for resolving ENS names over JSON-RPC",
   },
 ];
 
